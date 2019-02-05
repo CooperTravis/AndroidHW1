@@ -7,9 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.util.ArrayList;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String ARRAY = "array";
     private static final String LONGITUDE = "longitude";
@@ -19,31 +28,54 @@ public class Main2Activity extends AppCompatActivity {
     private static final String HUMIDITY = "humidity";
     private static final String PRECIPITATION = "precipitation";
 
+    private MapView mapView;
+    private GoogleMap gmap;
+    Double lgt;
+    Double lat;
+    Double temp;
+    Double wind;
+    Double hum;
+    Double pre;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.g_map);
+        mapFragment.getMapAsync(this);
+
     }
 
     public void showMap(){
-        Double lgt = getIntent().getDoubleExtra(LONGITUDE, 0.0);
-        Double lat = getIntent().getDoubleExtra(LATITUDE, 0.0);
-        Double temp = getIntent().getDoubleExtra(TEMPERATURE, 0.0);
-        Double wind = getIntent().getDoubleExtra(WINDSPEED, 0.0);
-        Double hum = getIntent().getDoubleExtra(HUMIDITY, 0.0);
-        Double pre = getIntent().getDoubleExtra(PRECIPITATION, 0.0);
-        
+
+
+
+
+        // David Driving
+
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        gmap = googleMap;
+
+        lgt = getIntent().getDoubleExtra(LONGITUDE, 0.0);
+        lat = getIntent().getDoubleExtra(LATITUDE, 0.0);
+        temp = getIntent().getDoubleExtra(TEMPERATURE, 0.0);
+        wind = getIntent().getDoubleExtra(WINDSPEED, 0.0);
+        hum = getIntent().getDoubleExtra(HUMIDITY, 0.0);
+        pre = getIntent().getDoubleExtra(PRECIPITATION, 0.0);
+
+        LatLng location = new LatLng(lat, lgt);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(location, 16);
+        gmap.addMarker(new MarkerOptions().position(location).title("Location"));
+        gmap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        gmap.animateCamera(cameraUpdate);
+
+
+
+    }
 }

@@ -114,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject jsonGeometry = jPlace.getJSONObject("geometry");
 
-                System.out.println(jsonGeometry.toString());
-
                 JSONObject jsonLocation = jsonGeometry.getJSONObject("location");
 
                 longitude = jsonLocation.getDouble("lng");
@@ -137,14 +135,12 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject currently = json1.getJSONObject("currently");
 
-                System.out.println(currently.toString());
-
                 temperature = currently.getDouble("temperature");
                 precipitation = currently.getDouble("precipProbability");
                 windSpeed = currently.getDouble("windSpeed");
                 humidity = currently.getDouble("humidity");
 
-                System.out.println(temperature + "," + precipitation + "," +  windSpeed + "," + humidity);
+                conn1.disconnect();
 
                 // Need to push this to next activity
 
