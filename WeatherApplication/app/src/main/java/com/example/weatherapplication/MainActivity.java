@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        EditText address = (EditText) findViewById(R.id.editText);
+        address.bringToFront();
+
+        Button button = findViewById(R.id.button);
+        button.bringToFront();
     }
 
     public void onClick(View view){
@@ -114,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject jsonGeometry = jPlace.getJSONObject("geometry");
 
-                System.out.println(jsonGeometry.toString());
-
                 JSONObject jsonLocation = jsonGeometry.getJSONObject("location");
 
                 longitude = jsonLocation.getDouble("lng");
@@ -137,14 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONObject currently = json1.getJSONObject("currently");
 
-                System.out.println(currently.toString());
-
                 temperature = currently.getDouble("temperature");
                 precipitation = currently.getDouble("precipProbability");
                 windSpeed = currently.getDouble("windSpeed");
                 humidity = currently.getDouble("humidity");
 
-                System.out.println(temperature + "," + precipitation + "," +  windSpeed + "," + humidity);
+                conn1.disconnect();
 
                 // Need to push this to next activity
 

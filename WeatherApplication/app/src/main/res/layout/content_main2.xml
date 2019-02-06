@@ -8,4 +8,59 @@
     tools:context=".Main2Activity"
     tools:showIn="@layout/activity_main2">
 
+    <fragment
+        android:id="@+id/g_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="165dp"
+        android:layout_height="34dp"
+        android:text="Temperature: \n%.1f"
+        app:layout_constraintBottom_toTopOf="@id/hum"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/wind"
+        app:layout_constraintTop_toBottomOf="@id/g_map"
+
+        />
+
+    <TextView
+        android:id="@+id/wind"
+        android:layout_width="165dp"
+        android:layout_height="34dp"
+        android:text="Wind Speed: \n%.2f"
+        app:layout_constraintBottom_toTopOf="@id/pre"
+        app:layout_constraintLeft_toRightOf="@id/temp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/g_map" />
+
+    <TextView
+        android:id="@+id/hum"
+        android:layout_width="165dp"
+        android:layout_height="34dp"
+
+        android:text="Humidity: \n%.1f\%"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/pre"
+        app:layout_constraintTop_toBottomOf="@id/temp" />
+
+    <TextView
+        android:id="@+id/pre"
+        android:layout_width="165dp"
+        android:layout_height="34dp"
+        android:text="Precipitation Chance: \n%.1f\%"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/hum"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wind" />
+
+
 </android.support.constraint.ConstraintLayout>
