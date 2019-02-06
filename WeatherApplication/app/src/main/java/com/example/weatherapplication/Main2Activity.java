@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity implements OnMapReadyCallback {
 
+    //David driving
+
     private static final String ARRAY = "array";
     private static final String LONGITUDE = "longitude";
     private static final String LATITUDE = "latitude";
@@ -52,14 +54,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
     }
 
-    public void showMap(){
 
-
-
-
-        // David Driving
-
-    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
